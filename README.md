@@ -1,1 +1,3 @@
-# hi
+# Hi is a chat app develop by golang.
+
+## please waiting for new update, he is busy on coding,coding,coding...... 
