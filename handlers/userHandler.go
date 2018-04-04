@@ -26,7 +26,8 @@ func login(uid string, conn net.Conn, request dataconversion.TCPRequest) {
 	log.Println(userInfo.Message)
 	log.Println(userInfo.Name)
 	// TO-DO
-	// verification user info from db
+	// 1. verification user info from db.
+	// 2. save session to redis.
 
 	userInfo.ID = uid
 	header = dataconversion.Header{
