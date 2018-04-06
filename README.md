@@ -31,7 +31,8 @@ $ mkdir -p $GOPATH/src/github.com/myusername/project && cd "$_"
 
 ```sh
 $ govendor init
-$ govendor fetch github.com/gin-gonic/gin@v1.2
+$ govendor add +external
+$ govendor install +local
 ```
 
 4. Run your project
