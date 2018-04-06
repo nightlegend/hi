@@ -10,14 +10,18 @@ var (
 	cli *redis.Client
 )
 
+func init() {
+	cli = NewCli()
+}
+
 // NewCli new a redis client.
 func NewCli() *redis.Client {
-	cli = redis.NewClient(&redis.Options{
+	client := redis.NewClient(&redis.Options{
 		Addr:     "localhost:6379",
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})
-	return cli
+	return client
 }
 
 // Set key to hold the string value.
