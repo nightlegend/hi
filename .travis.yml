@@ -1,16 +1,13 @@
 language: go
-sudo: false
+
 go:
   - "1.10"
-git:
-  depth: 3
+  - tip
 
-go_import_path: github.com/nightlegend/hi
+before_install:
+  - go get -t -v ./...
 
 script:
-  - go get
-  - go install
-  - cd /home/travis/build/nightlegend/hi
   - go test -race -coverprofile=coverage.txt -covermode=atomic
 
 after_success:
