@@ -1,0 +1,17 @@
+language: go
+sudo: false
+go:
+  - 1.10
+git:
+  depth: 3
+
+go_import_path: github.com/nightlegend/hi
+
+script:
+  - go get
+  - go install
+  - cd /home/travis/build/nightlegend/hi
+  - go test -v -covermode=count -coverprofile=coverage.out
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

@@ -1,5 +1,7 @@
 # "HI" socket server
 
+[![Build Status](https://travis-ci.org/nightlegend/Dashboard.svg)](https://travis-ci.org/nightlegend/hi)
+
 "HI" written in Go (Golang). If you need a socket server, you will love "HI".
 
 ## socket process
