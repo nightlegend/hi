@@ -11,7 +11,7 @@ script:
   - go get
   - go install
   - cd /home/travis/build/nightlegend/hi
-  - go test -v -covermode=count -coverprofile=coverage.out
+  - go test -race -coverprofile=coverage.txt -covermode=atomic
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
