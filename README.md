@@ -1,6 +1,6 @@
 # "HI" socket server
 
-[![Build Status](https://travis-ci.org/nightlegend/Dashboard.svg)](https://travis-ci.org/nightlegend/hi)
+[![Build Status](https://travis-ci.org/nightlegend/Dashboard.svg)](https://travis-ci.org/nightlegend/hi) [![codecov](https://codecov.io/gh/nightlegend/hi/branch/master/graph/badge.svg)](https://codecov.io/gh/nightlegend/hi)
 
 "HI" written in Go (Golang). If you need a socket server, you will love "HI".
 
