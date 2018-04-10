@@ -5,27 +5,33 @@ import (
 	"testing"
 )
 
+var cli = NewCli()
+
 func TestSet(t *testing.T) {
-	result := Set("name", "david")
+	defer Close(cli)
+	result := Set(cli, "name", "david")
 	if !result {
 		t.Fatal("set new k-v failed.")
 	}
 }
 
 func TestGet(t *testing.T) {
-	result := Get("name")
+	defer Close(cli)
+	result := Get(cli, "name")
 	t.Log(result)
 }
 
 func TestLPush(t *testing.T) {
-	result := LPush("david", "c")
+	defer Close(cli)
+	result := LPush(cli, "david", "c")
 	if !result {
 		t.Fatal(result)
 	}
 }
 
 func TestLRange(t *testing.T) {
-	result := LRange("david")
+	defer Close(cli)
+	result := LRange(cli, "david")
 	fmt.Println(result)
 	for _, val := range result {
 		fmt.Println(val)

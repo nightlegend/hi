@@ -27,6 +27,8 @@ func (userHandler *UsersHandler) MainHandler(uid string, conn net.Conn, req data
 	switch req.Hd.CommandID {
 	case protocol.LoginRequest:
 		login(uid, conn, req)
+	case protocol.LogoutRequest:
+		logout(conn, req)
 	}
 }
 

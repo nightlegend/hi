@@ -6,7 +6,10 @@ const (
 	LoginSuccess = 0x0010
 	LoginFailed  = 0x0100
 
-	UserMessageRequest = 0x0002
-	UserMessageSuccess = 0x0020
-	UserMessageFail    = 0x00200
+	LogoutRequest = 0x0002
+	LogoutSuccess = 0x0020
+
+	UserMessageRequest = 0x0003
+	UserMessageSuccess = 0x0030
+	UserMessageFail    = 0x00300
 )
