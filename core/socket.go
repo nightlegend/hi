@@ -10,6 +10,7 @@ import (
 	"github.com/nightlegend/hi/handlers"
 	"github.com/nightlegend/hi/lib/stringid"
 	"github.com/nightlegend/hi/protocol"
+	"github.com/nightlegend/hi/utils"
 )
 
 // handler declaration.
@@ -21,17 +22,19 @@ var (
 // SocketServer start a socket server.
 func SocketServer() {
 	var uid string
+	redilsCli, _ := utils.NewCli()
 	conns := make(map[string]net.Conn)
 	messages := make(chan string, 10)
 	listener, err := net.Listen("tcp", ":9090")
 	errorpkg.CheckErrors(err)
 	defer listener.Close()
-	go sendMsg(&conns, messages)
+	// go sendMsg(&conns, messages)
 	for {
 		conn, err := listener.Accept()
 		errorpkg.CheckErrors(err)
 		uid = stringid.GenerateNonCryptoID()
 		conns[uid] = conn
+		utils.LPush(redilsCli, "users", uid)
 		go handler(uid, conn, conns, messages)
 	}
 }

@@ -35,7 +35,25 @@ $ govendor add +external
 $ govendor install +local
 ```
 
-4. Run your project
+4. Start redis server
+
+[redis](https://redis.io/)
+
+5. Configure your redis server connection.
+
+```go
+func NewCli() (*redis.Client, error) {
+	client := redis.NewClient(&redis.Options{
+		Addr:     "localhost:6379",
+		Password: "", // no password set
+		DB:       0,  // use default DB
+	})
+	err := client.Ping().Err()
+	return client, err
+}
+```
+
+5. Run your project
 
 ```sh
 $ go run server.go

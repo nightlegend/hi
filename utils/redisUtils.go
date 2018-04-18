@@ -7,13 +7,14 @@ import (
 )
 
 // NewCli new a redis client.
-func NewCli() *redis.Client {
+func NewCli() (*redis.Client, error) {
 	client := redis.NewClient(&redis.Options{
 		Addr:     "localhost:6379",
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})
-	return client
+	err := client.Ping().Err()
+	return client, err
 }
 
 // Set key to hold the string value.

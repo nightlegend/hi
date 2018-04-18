@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-var cli = NewCli()
+var cli, _ = NewCli()
 
 func TestSet(t *testing.T) {
 	defer Close(cli)

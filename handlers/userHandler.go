@@ -25,15 +25,20 @@ func login(uid string, conn net.Conn, request dataconversion.TCPRequest) {
 	var resp dataconversion.TCPResponse
 	var header dataconversion.Header
 	json.Unmarshal(request.Body, &userInfo)
-	log.Println(userInfo.Message)
-	log.Println(userInfo.Name)
+	log.Println("User Name:", userInfo.Name)
+	log.Println("User Comment:", userInfo.Message)
 	// TO-DO
 	// 1. verification user info from db.
 	// 2. save session to redis.
-	var cli = redisUtils.NewCli()
-	connStr := fmt.Sprintf("%v", conn)
-	redisUtils.Set(cli, uid, connStr)
-	redisUtils.Close(cli)
+	cli, err := redisUtils.NewCli()
+	if err != nil {
+		// To-do item
+		// save user in someplace
+	} else {
+		connStr := fmt.Sprintf("%v", conn)
+		redisUtils.Set(cli, uid, connStr)
+		redisUtils.Close(cli)
+	}
 	userInfo.ID = uid
 	header = dataconversion.Header{
 		HandlerID: protocol.USER,
@@ -52,8 +57,12 @@ func login(uid string, conn net.Conn, request dataconversion.TCPRequest) {
 func logout(conn net.Conn, request dataconversion.TCPRequest) {
 	var userInfo UserInfo
 	json.Unmarshal(request.Body, &userInfo)
-	var cli = redisUtils.NewCli()
-	redisUtils.Delete(cli, userInfo.ID)
+	cli, err := redisUtils.NewCli()
+	if err != nil {
+		log.Fatal(err)
+	} else {
+		redisUtils.Delete(cli, userInfo.ID)
+	}
 	header := dataconversion.Header{
 		HandlerID: protocol.USER,
 		CommandID: protocol.LogoutSuccess,
